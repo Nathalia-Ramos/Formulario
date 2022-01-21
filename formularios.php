@@ -1,3 +1,49 @@
+<?php
+    
+
+    //isset() -> permite verificar a existencia de uma variavel ou
+    //de um objeto e tambem é uma estrutura de decisão
+
+    //Validação se o botao foi clicado e disponibilizado na ação do GET
+    if(isset($_GET['btnSalvar'])){
+    
+   
+    // Recuperando dados via GET do formulario
+    $nome = $_GET ['txtNome'];
+    $cidade = $_GET ['sltCidade']; 
+    $sexo = $_GET ['rdoSexo'];
+    $obs  = $_GET ['txtObservação'];
+    
+    //Foi criados essas variaveis para resolver o problema de variavel indefinida na exibição dos dados
+    $idiomaPortugues = null;
+    $idiomaEspanhol = null;
+    $idiomaIngles = null; 
+
+    //tratamento para recuperar os checkbox que foram selecionados no formulario
+    if(isset($_GET['chkPortugues'])) {
+        $idiomaPortugues = $_GET['chkPortugues'];
+    }
+
+    if(isset($_GET['chkIngles'])){
+        $idiomaIngles = $_GET['chkIngles'];
+    }
+
+    if(isset($_GET['chkEspanhol'])) {
+        $idiomaEspanhol = $_GET['chkEspanhol'];
+    }
+
+
+    //Escrevendo o conteudo das variaveis do navegador
+    //Concatenação é representado pelo ponto (.)
+    echo('<b> Nome: </b> ' . $nome . '<br>');
+    echo ('<b> Cidade: </b>' . $cidade . '<br>');
+    echo ('<b> Sexo: </b>' . $sexo . '<br>');
+    echo ('<b> Obs: </b>' . $obs . '<br>');
+    echo('<b>Idiomas:</b>' . '' .  $idiomaPortugues . '' . $idiomaIngles . '' . $idiomaEspanhol);
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -40,7 +86,7 @@
                             
         selected -> permite pré seleciona uma opção que voce deseja que o usuário sempre veja
      -->
-    <form name = "frmCadastro" method="GET" action="formularios.html" > 
+    <form name = "frmCadastro" method="GET" action="formularios.php" > 
        Nome: <input type="text" name= "txtNome" size="50" maxlegth="30"> </br> </br>
        Cidade:
        <select name="sltCidade" >
@@ -62,7 +108,7 @@
         <br>
 
         Idioma: 
-        <input type="checkbox" name="chkPortugues" value="pt" checked> Português
+        <input type="checkbox" name="chkPortugues" value="PT" checked> Português
         <input type="checkbox" name="chkIngles" value="EN"> Inglês 
         <input type="checkbox" name="chkEspanhol" value="ES">Espanhol
         <br>
@@ -80,7 +126,7 @@
         <br>
         <input type="submit" name="btnSalvar" value="Salvar">
         <input type="reset" name="btnLimpar" value="Limpar">
-
+            
     </form>
 </body>
 </html>
